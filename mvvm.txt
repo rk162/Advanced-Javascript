@@ -1,0 +1,28 @@
+
+
+model view view model is a design pattern. 
+
+
+
+
+ Two way Data binding
+
+
+  model
+  |   |
+  |   |
+Data binding container                                            
+  |   |  
+  |   |   
+                                            
+view model
+   | |  
+  view
+
+
+Frameworks follow mvvm-   
+Angular js
+React
+Knockout
+Backbone
+Sapient portal designed with help of angular js framework.
