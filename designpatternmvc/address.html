@@ -9,27 +9,26 @@
 </head>
 
 <body>
-    <div class="address">
-        <p>Enter your Payment Address: </p>
-        <label for="Street"></label>
-        <input type="text" id="street" placeholder="Enter Street">
-        <br>
-        <label for="City"></label>
-        <input type="text" id="city" placeholder="Enter City"><br>
-    </div>
-    <div class="newaddress">
-        <p>Enter your Shipping Address: </p>
-        <label for="Street"></label>
-        <input type="text" id="newstreet" placeholder="Enter Street"><br>
-        <label for="City"></label>
-        <input type="text" id="newcity" placeholder="EnterCity"><br>
-    </div>
-    <div class="check">
-        <p>Check this if your Shipping Address is the same as Payment Address
-            <input type="checkbox" id="checkbox"></p>
-    </div>
+    <fieldset>
+        <h3>Payment Address</h3>
+        <form action="">
+            <div><label for="payment-address">City :  </label>
+                <input type="text" id="payment-addresscity" value=""><br>
+                <label for="payment-address">Street:</label>
+                <input type="text" id="payment-addressstreet" value=""></div>
+
+            <h3>Shipping Address</h3>
+
+            <input type="checkbox" id="checkbox">
+            <label for="checkbox">Same as Payment Address</label>
+
+            <div><label for="shipping-address">City :  </label>
+                <input type="text" value="" id="shipping-addresscity"><br>
+                <label for="shipping-address">Street :</label>
+                <input type="text" id="shipping-addressstreet" value=""></div>
+        </form>
+    </fieldset>
     <script src="main.js"></script>
 </body>
-
 
 </html>

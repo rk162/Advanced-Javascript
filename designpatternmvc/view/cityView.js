@@ -6,38 +6,24 @@ export default class View {
         this.elements = elements;
         this.address = Address;
         this.controller = new Controller();
-
-        ({
-            street: document.querySelector('#street'),
-            city: document.querySelector('#city'),
-            newstreet: document.querySelector('#newstreet'),
-            newcity: document.querySelector('#newcity'),
-            newaddress: document.querySelector('#newaddress'),
-            checkbox: document.querySelector('#checkbox')
-        });
     }
-
 
     initialize() {
-        this.address.checked.attach((city) => {
-            this.render(city)
+        this.address.addresscopied.attach((paymentAddress1, paymentAddress2) => {
+            this.render(paymentAddress1, paymentAddress2);
         })
-        this.address.checked.attach((street) => {
-            this.render(street)
-        })
-        this.elements.checkbox.addEventListener('change', () => {
-            if (this.checked) {
-                this.controller.check(newcity, newstreet);
+        this.elements.checkBox.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                this.controller.copy(this.elements.paymentAddress1.value, this.elements.paymentAddress2.value);
             } else {
-                this.controller.uncheck(newcity, newstreet);
+                this.elements.shippingAddress1.value = " ";
+                this.elements.shippingAddress2.value = " ";
             }
-
-        })
+        });
     }
-    render(newcity, newstreet) {
-        this.elements.newaddress.innerHTML = '';
-        for (let address of newaddress) {
-            this.elements.newaddress.appendChild(new Address(city, street))
-        }
+    render(newAddress1, newAddress2) {
+        this.elements.shippingAddress1.value = newAddress1;
+        this.elements.shippingAddress2.value = newAddress2;
+
     }
 }
