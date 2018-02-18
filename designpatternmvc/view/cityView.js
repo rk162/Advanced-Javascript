@@ -1,35 +1,43 @@
-import Model from "../model/city";
-import Controller from "../presenter/cityPresenter";
+import Address from "../model/address";
+import Controller from "../controller/cityCtrl";
 
 export default class View {
-    constructor(elements){
-        this.elements=elements;
-        this.address= Address;
-       this.controller=new Controller();
+    constructor(elements) {
+        this.elements = elements;
+        this.address = Address;
+        this.controller = new Controller();
+
+        ({
+            street: document.querySelector('#street'),
+            city: document.querySelector('#city'),
+            newstreet: document.querySelector('#newstreet'),
+            newcity: document.querySelector('#newcity'),
+            newaddress: document.querySelector('#newaddress'),
+            checkbox: document.querySelector('#checkbox')
+        });
     }
 
-    initialize(){
-        this.address.city.attach((city)=>{
+
+    initialize() {
+        this.address.checked.attach((city) => {
             this.render(city)
         })
-        this.address.street.attach((street)=>{
+        this.address.checked.attach((street) => {
             this.render(street)
         })
-        var checkbox= this.elements.querySelector('#checkbox');
-        this.elements.checkbox.addEventListener('change',()=>{
-            if(this.checked){
-                 this.newcity= this.city;
-                 this.newstreet= this.street;
-                 this.controller.copy(newcity,newstreet);
+        this.elements.checkbox.addEventListener('change', () => {
+            if (this.checked) {
+                this.controller.check(newcity, newstreet);
+            } else {
+                this.controller.uncheck(newcity, newstreet);
             }
-    
-        })      
-    }
-    render(newcity,newstreet){
-        this.elements.newaddress.innerHTML='';
-        for(let address of newaddress){
-            this.elements.newaddress.appendChild(new Address(city,street))
-        }
-    }   
-}         
 
+        })
+    }
+    render(newcity, newstreet) {
+        this.elements.newaddress.innerHTML = '';
+        for (let address of newaddress) {
+            this.elements.newaddress.appendChild(new Address(city, street))
+        }
+    }
+}

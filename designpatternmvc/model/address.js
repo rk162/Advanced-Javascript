@@ -1,15 +1,15 @@
 import Observer from "../observer/listenernotify";
 
-export default class Address {
-    constructor(city,street) {
-        this.city= city;
-        this.street= street;
-        this.addressSame=new Observer();
-    }
-    copy(newcity,newstreet){
-    this.city=newcity;
-    this.street=newstreet;
-}
-}
+class Address {
+    constructor(address1, address2) {
+        this.address1 = address1;
+        this.address2 = address2;
+        this.addresscopied = new Observer();
 
-// export default new Model();
+    }
+    copy(address1, address2) {
+        this.addresscopied.notify(address1, address2);
+    }
+
+}
+export default new Address();
