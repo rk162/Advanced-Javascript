@@ -7,141 +7,156 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Calory Calculator</title>
     <style type="text/css">
-    body{
-        margin: 0 auto;
-        padding: 0 auto;
-    }
-       .heading{
-           border: 1px solid blue;
-           width: 100%;
-           height: auto;
-           font-size: 1.8em;
-           font-weight: bolder;
-           color: white;
-           text-align: center;
-           background: blue;
-       }
-       .clear-button{
-          float:right;
-          margin-right: 20px;
-          height: 50px;
-          width: 10%;
-          font-size: 16px;
-          font-weight: bolder;
-          font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-          color: Cyan;
-          background: green;
-          outline: none;
-          border-radius: 10px;
-          box-shadow: 2px 6px 5px rgb(110, 80, 210);
-       }
-       .form{
-        background:deepskyblue;
-       }
-       .container{
-           display: flex;
-           width: 70%;
-           margin: 0 auto;
+        body {
+            margin: 0 auto;
+            padding: 0 auto;
+        }
         
-       }
-       .content{
-           margin: 50px 0 50px 15%;
-           flex-direction: row;
-           flex:1;
-           font-size: 1.4em;
-           color:dimgrey;
-       }
-       #add-button{
-           margin-left: 130px;
-           height: 35px;
-           width: 100px;
-           font-size: 0.7em;
-           color:midnightblue;
-           background:darkorange;
-           outline:none;
-          border-radius:5px;
-       }
-       #delete-button{
-           display: none;
-           margin-left: 160px;
-           height: 35px;
-           width: 100px;
-           font-size: 0.7em;
-           color:midnightblue;
-           background:mediumorchid; 
-           outline:none;
-           border-radius: 5px;
-       }
-       #update-button{
-           display: none;
-           margin-left: 130px;
-           height: 35px;
-           width: 100px;
-           font-size: 0.7em;
-           color:midnightblue;
-           background:darkturquoise;
-           outline:none;
-           border-radius: 5px;
-       }
-       #item-name{
-           border: none;
-           outline: none;
-           height: 30px;
-           
-           border-bottom: 1px solid black;
-           background:deepskyblue;
-       }
-       #calorie-value{
-           border: none;
-           outline: none;
-           height: 30px;
-           
-           border-bottom: 1px solid black;
-           background:deepskyblue;
-       }
-       ::placeholder{
-          font-size: 16px;
-       }
-       .total-calorie{
-           text-align: center;
-       }
+        .heading {
+            border: 1px solid blue;
+            width: 100%;
+            height: auto;
+            font-size: 1.8em;
+            font-weight: bolder;
+            color: white;
+            text-align: center;
+            background: blue;
+        }
+        
+        .clear-button {
+            float: right;
+            margin-right: 20px;
+            height: 50px;
+            width: 10%;
+            font-size: 16px;
+            font-weight: bolder;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            color: Cyan;
+            background: green;
+            outline: none;
+            border-radius: 10px;
+            box-shadow: 2px 6px 5px rgb(110, 80, 210);
+        }
+        
+        .form {
+            background: deepskyblue;
+        }
+        
+        .container {
+            display: flex;
+            width: 70%;
+            margin: 0 auto;
+        }
+        
+        .content {
+            margin: 50px 0 50px 15%;
+            flex-direction: row;
+            flex: 1;
+            font-size: 1.4em;
+            color: dimgrey;
+        }
+        
+        #add-button {
+            margin-left: 130px;
+            height: 35px;
+            width: 100px;
+            font-size: 0.7em;
+            color: midnightblue;
+            background: darkorange;
+            outline: none;
+            border-radius: 5px;
+        }
+        
+        #delete-button {
+            display: none;
+            margin-left: 160px;
+            height: 35px;
+            width: 100px;
+            font-size: 0.7em;
+            color: midnightblue;
+            background: mediumorchid;
+            outline: none;
+            border-radius: 5px;
+        }
+        
+        #update-button {
+            display: none;
+            margin-left: 130px;
+            height: 35px;
+            width: 100px;
+            font-size: 0.7em;
+            color: midnightblue;
+            background: darkturquoise;
+            outline: none;
+            border-radius: 5px;
+        }
+        
+        #item-name {
+            border: none;
+            outline: none;
+            height: 30px;
+            border-bottom: 1px solid black;
+            background: deepskyblue;
+        }
+        
+        #calorie-value {
+            border: none;
+            outline: none;
+            height: 30px;
+            border-bottom: 1px solid black;
+            background: deepskyblue;
+        }
+        
+         ::placeholder {
+            font-size: 16px;
+        }
+        
+        #menu-table {
+            width: 70%;
+            margin: 0 auto;
+        }
+        
+        td {
+            font-size: 20px;
+        }
     </style>
 </head>
 
 <body>
-  <header class="heading">
+    <header class="heading">
         <h2 class="head">Track Calories <span>
             <input type="button" id="clear-all" class="clear-button" value="Clear All"></span></h2>
-  </header>
-  <fieldset class="form">
+    </header>
+    <fieldset class="form">
         <form>
-  <div class="container">
- 
-         <div class="content">
-             <h4>Item Name
-             <input type="text" id="item-name" placeholder="Enter the Item Name"></h4>
-             <div><input type="button" id="add-button" value="Add Item">
-                <input type="button" id="update-button" value="Update Item"></div>
-         </div>
-         <div class="content">
-             <h4>Calorie Value
-                <input type="text" id="calorie-value" placeholder="Enter the Calorie Value"></h4>
-                <div><input type="button" id="delete-button" value="Delete Item"></div>
-         </div>
-        </div>
-      </form> </fieldset>
-      <form>
-          <h2 class="total-calorie">Total Calories:<span id="total"></span> </h2>
-         <table class="table" id="menu-table">
-             <th> 
-                 <td>Item Name</td>
-                 <td>Calorie Value</td>
-                 <td>Action</td>
+            <div class="container">
+
+                <div class="content">
+                    <h4>Item Name
+                        <input type="text" id="item-name" placeholder="Enter the Item Name"></h4>
+                    <div><input type="button" id="add-button" value="Add Item">
+                        <input type="button" id="update-button" value="Update Item"></div>
+                </div>
+                <div class="content">
+                    <h4>Calorie Value
+                        <input type="number" id="calorie-value" placeholder="Enter the Calorie Value"></h4>
+                    <div><input type="button" id="delete-button" value="Delete Item"></div>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <form>
+        <h2 id="subheading"></h2>
+        <table class="table" id="menu-table">
+            <th>
+                <td>Item Name</td>
+                <td>Calorie Value</td>
+                <td>Action</td>
             </th>
-         </table>
-      </form>
- 
-    <script type="text/javascript" src="app.js"></script>
+        </table>
+    </form>
+
+
     <script src="main.js"></script>
 </body>
 

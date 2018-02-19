@@ -2,7 +2,7 @@ import View from "./view/appView";
 
 (function() {
     let view = new View({
-        total:document.querySelector('#total'),
+        calorieTotal: document.querySelector('#total'),
         addButton: document.querySelector('#add-button'),
         editButton: document.querySelector('#edit-button'),
         updateButton: document.getElementById('update-button'),

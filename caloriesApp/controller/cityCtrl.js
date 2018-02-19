@@ -1,10 +1,10 @@
-import Address from "../model/address";
+import Meals from "../model/meals";
 
 export default class Controller {
     constructor() {
         this.model = Meals;
     }
-    add(calorie,calorieTotal) {
-        this.address.copy(address1, address2);
+    add(itemName, calorieValue, calorieTotal) {
+        this.model.add(itemName, calorieValue, calorieTotal);
     }
 }
