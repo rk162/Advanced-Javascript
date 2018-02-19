@@ -35,6 +35,16 @@
           border-radius: 10px;
           box-shadow: 2px 6px 5px rgb(110, 80, 210);
        }
+       .container{
+           display: flex;
+       }
+       .content{
+           flex-direction: row;
+           flex:1;
+       }
+       #update-button{
+           display: none;
+       }
     </style>
 </head>
 
@@ -43,13 +53,25 @@
         <h2 class="head">Track Calories <span>
             <input type="button" id="clear-all" class="clear-button" value="Clear All"></span></h2>
   </header>
-  <div class="container">
   <fieldset>
-      <form>
-         <div class="content"></div>
+        <form>
+  <div class="container">
+ 
+         <div class="content">
+             <h4>Item Name
+             <input type="text" id="item-name" placeholder="Enter the Item Name"></h4>
+             <div><input type="button" id="add-button" value="Add Item">
+                <input type="button" id="update-button" value="Update Item"></div>
+         </div>
+         <div class="content">
+             <h4>Calorie Value
+                <input type="text" id="calorie-value" placeholder="Enter the Calorie Value"></h4>
+                <div><input type="button" id="delete-button" value="Delete Item"></div>
+         </div>
+        </div>
       </form>
   </fieldset>
-  </div>
+ 
     <script src="main.js"></script>
 </body>
 
