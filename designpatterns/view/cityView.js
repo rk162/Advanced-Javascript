@@ -6,13 +6,8 @@ export default class View {
         this.elements = elements;
         this.model = Model;
         this.controller = new Controller();
-
-        ({
-            addBtn: document.querySelector('#addBtn'),
-            removeBtn: document.querySelector('#removeBtn'),
-            cityList: document.querySelector('#cityList')
-        });
     }
+    
     initialize() {
         this.model.cityAdded.attach((cityList) => {
             this.render(cityList)
