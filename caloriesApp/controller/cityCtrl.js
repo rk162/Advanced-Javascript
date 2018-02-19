@@ -2,9 +2,9 @@ import Address from "../model/address";
 
 export default class Controller {
     constructor() {
-        this.address = Address;
+        this.model = Meals;
     }
-    copy(address1, address2) {
+    add(calorie,calorieTotal) {
         this.address.copy(address1, address2);
     }
 }

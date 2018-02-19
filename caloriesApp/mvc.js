@@ -1,12 +1,15 @@
-import View from "./view/cityView";
+import View from "./view/appView";
 
 (function() {
     let view = new View({
-        checkBox: document.querySelector('#checkbox'),
-        paymentAddress1: document.getElementById('payment-addresscity'),
-        paymentAddress2: document.getElementById('payment-addressstreet'),
-        shippingAddress1: document.getElementById('shipping-addresscity'),
-        shippingAddress2: document.getElementById('shipping-addressstreet')
+        total:document.querySelector('#total'),
+        addButton: document.querySelector('#add-button'),
+        editButton: document.querySelector('#edit-button'),
+        updateButton: document.getElementById('update-button'),
+        deleteButton: document.getElementById('delete-button'),
+        itemName: document.getElementById('item-name'),
+        calorieValue: document.getElementById('calorie-value'),
+        menuTable: document.getElementById('menu-table')
     });
     view.initialize();
 })();

@@ -4,26 +4,39 @@ import Controller from "../controller/cityCtrl";
 export default class View {
     constructor(elements) {
         this.elements = elements;
-        this.address = Address;
+        this.model = Meals;
         this.controller = new Controller();
     }
 
     initialize() {
-        this.address.addresscopied.attach((paymentAddress1, paymentAddress2) => {
-            this.render(paymentAddress1, paymentAddress2);
+        this.model.itemAdded.attach((item,calorie) => {
+            this.render(itemName,calorieValue,calorieTotal);
         })
-        this.elements.checkBox.addEventListener('change', (e) => {
-            if (e.target.checked) {
-                this.controller.copy(this.elements.paymentAddress1.value, this.elements.paymentAddress2.value);
-            } else {
-                this.elements.shippingAddress1.value = " ";
-                this.elements.shippingAddress2.value = " ";
-            }
+        this.elements.addButton.addEventListener('click', (e) => {
+ if (this.elements.itemName.value!="" && this.elements.calorieValue.value!="") {
+     this.controller.add(this.elements.calorieValue.value, this.elements.calorieTotal.value);
+           this.elements.itemName= "";
+           this.elements.calorieValue="";
+    }
         });
     }
-    render(newAddress1, newAddress2) {
-        this.elements.shippingAddress1.value = newAddress1;
-        this.elements.shippingAddress2.value = newAddress2;
+
+    render(itemName,calorieValue,total) {
+         let tdata=document.createElement("tr");
+         let tItem=document.createElement("td");
+         let tCalorie=document.createElement("td");
+         let action=document.createElement("td");
+         let edit=document.createElement("button");
+         edit.innerHTML="Edit";
+         tdata.appendChild(tItem);
+         tdata.appendChild(tCalorie);
+         tdata.appendChild(edit);
+         this.elements.menu-table.appendChild(tdata);
+         tItem.innerHTML=itemName;
+         tCalorie.innerHTML=calorieValue;
+         this.elements.total.innerHTML=calorieTotal.value;
+
+
 
     }
 }

@@ -62,6 +62,7 @@
           border-radius:5px;
        }
        #delete-button{
+           display: none;
            margin-left: 160px;
            height: 35px;
            width: 100px;
@@ -130,10 +131,13 @@
         </div>
       </form> </fieldset>
       <form>
-          <h2 class="total-calorie">Total Calories: </h2>
+          <h2 class="total-calorie">Total Calories:<span id="total"></span>> </h2>
          <table class="table" id="menu-table">
-             <tbody id="menu-list">
-             </tbody>
+             <th> 
+                 <td>Item Name</td>
+                 <td>Calorie Value</td>
+                 <td>Action</td>
+            </th>
          </table>
       </form>
  
