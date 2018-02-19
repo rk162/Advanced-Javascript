@@ -40,6 +40,8 @@
        }
        .container{
            display: flex;
+           width: 70%;
+           margin: 0 auto;
         
        }
        .content{
@@ -57,6 +59,7 @@
            color:midnightblue;
            background:darkorange;
            outline:none;
+          border-radius:5px;
        }
        #delete-button{
            margin-left: 160px;
@@ -66,6 +69,7 @@
            color:midnightblue;
            background:mediumorchid; 
            outline:none;
+           border-radius: 5px;
        }
        #update-button{
            display: none;
@@ -76,6 +80,7 @@
            color:midnightblue;
            background:darkturquoise;
            outline:none;
+           border-radius: 5px;
        }
        #item-name{
            border: none;
@@ -126,10 +131,13 @@
       </form> </fieldset>
       <form>
           <h2 class="total-calorie">Total Calories: </h2>
-         
+         <table class="table" id="menu-table">
+             <tbody id="menu-list">
+             </tbody>
+         </table>
       </form>
  
- 
+    <script type="text/javascript" src="app.js"></script>
     <script src="main.js"></script>
 </body>
 
