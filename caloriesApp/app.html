@@ -35,15 +35,69 @@
           border-radius: 10px;
           box-shadow: 2px 6px 5px rgb(110, 80, 210);
        }
+       .form{
+        background:deepskyblue;
+       }
        .container{
            display: flex;
+        
        }
        .content{
+           margin: 50px 0 50px 15%;
            flex-direction: row;
            flex:1;
+           font-size: 1.4em;
+           color:dimgrey;
+       }
+       #add-button{
+           margin-left: 130px;
+           height: 35px;
+           width: 100px;
+           font-size: 0.7em;
+           color:midnightblue;
+           background:darkorange;
+           outline:none;
+       }
+       #delete-button{
+           margin-left: 160px;
+           height: 35px;
+           width: 100px;
+           font-size: 0.7em;
+           color:midnightblue;
+           background:mediumorchid; 
+           outline:none;
        }
        #update-button{
            display: none;
+           margin-left: 130px;
+           height: 35px;
+           width: 100px;
+           font-size: 0.7em;
+           color:midnightblue;
+           background:darkturquoise;
+           outline:none;
+       }
+       #item-name{
+           border: none;
+           outline: none;
+           height: 30px;
+           
+           border-bottom: 1px solid black;
+           background:deepskyblue;
+       }
+       #calorie-value{
+           border: none;
+           outline: none;
+           height: 30px;
+           
+           border-bottom: 1px solid black;
+           background:deepskyblue;
+       }
+       ::placeholder{
+          font-size: 16px;
+       }
+       .total-calorie{
+           text-align: center;
        }
     </style>
 </head>
@@ -53,7 +107,7 @@
         <h2 class="head">Track Calories <span>
             <input type="button" id="clear-all" class="clear-button" value="Clear All"></span></h2>
   </header>
-  <fieldset>
+  <fieldset class="form">
         <form>
   <div class="container">
  
@@ -69,8 +123,12 @@
                 <div><input type="button" id="delete-button" value="Delete Item"></div>
          </div>
         </div>
+      </form> </fieldset>
+      <form>
+          <h2 class="total-calorie">Total Calories: </h2>
+         
       </form>
-  </fieldset>
+ 
  
     <script src="main.js"></script>
 </body>

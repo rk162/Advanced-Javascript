@@ -40,4 +40,12 @@ let re11=/\S/                    // Match atleast one non-whitespace
 let re12=/^Sap\b/i                // Searches for the exact word (word-boundary)
 let re13=/^\wSap\b/i
 let re14=/^\w\Sap\b\s*ient$/i
-Metacharacters.reTest(re14,"_sap ient");
+
+let email=/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z_\-]+).([a-zA-Z]{2,5})$/
+// Metacharacters.reTest(email,'ritesh.kumar88@gmail.com');
+
+let phone=/^(\W?\d{2,3}?[-. ])?(\d{3,4}?[-. ])?\d{7,8}$/
+// Metacharacters.reTest(phone,'+91-0124-4448888');
+
+let url=/^(https?:\/\/)([a-zA-z0-9]+.)?([a-zA-Z0-9]+.)?([a-zA-Z0-9]+.)([a-zA-Z]{2,5})$/
+Metacharacters.reTest(url,'https://peopleportal2.sapient.com');
