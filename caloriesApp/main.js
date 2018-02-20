@@ -121,21 +121,29 @@
 	    }, {
 	        key: "render",
 	        value: function render(itemName, calorieValue, calorieTotal) {
+	            var _this2 = this;
+
 	            var subHead = document.getElementById("subheading");
 	            var tdata = document.createElement("tr");
 	            var tItem = document.createElement("td");
 	            var tCalorie = document.createElement("td");
 	            var action = document.createElement("td");
-	            var edit = document.createElement("button");
-	            edit.innerHTML = "Edit";
+	            var editbtn = document.createElement("button");
+	            editbtn.innerHTML = "Edit";
 	            this.elements.menuTable.appendChild(tdata);
 	            tdata.appendChild(tItem);
 	            tdata.appendChild(tCalorie);
 	            tdata.appendChild(action);
-	            action.appendChild(edit);
+	            action.appendChild(editbtn);
 	            tItem.innerHTML = itemName;
 	            tCalorie.innerHTML = calorieValue;
 	            this.elements.total.innerHTML = calorieTotal;
+
+	            editbtn.addEventListener('click', function (e) {
+	                event.currentTarget.disabled = true;
+	                _this2.elements.itemName = event.currentTarget.parentNode.parentNode.firstChild.value;
+	                _this2.elements.calorieValue = event.currentTarget.parentNode.parentNode.secondChild.value;
+	            });
 	        }
 	    }]);
 

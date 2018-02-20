@@ -28,16 +28,22 @@ export default class View {
         let tItem = document.createElement("td");
         let tCalorie = document.createElement("td");
         let action = document.createElement("td");
-        let edit = document.createElement("button");
-        edit.innerHTML = "Edit";
+        let editbtn = document.createElement("button");
+        editbtn.innerHTML = "Edit";
         this.elements.menuTable.appendChild(tdata);
         tdata.appendChild(tItem);
         tdata.appendChild(tCalorie);
         tdata.appendChild(action);
-        action.appendChild(edit);
+        action.appendChild(editbtn);
         tItem.innerHTML = itemName;
         tCalorie.innerHTML = calorieValue;
         this.elements.total.innerHTML = calorieTotal;
+
+        editbtn.addEventListener('click',(e)=>{
+             event.currentTarget.disabled=true;
+            this.elements.itemName= event.currentTarget.parentNode.parentNode.firstChild.value;
+            this.elements.calorieValue= event.currentTarget.parentNode.parentNode.secondChild.value;
+        })
 
 
 
