@@ -1,10 +1,11 @@
 import Observer from "../observer/listenernotify";
 
 class Meals {
-    constructor(item, calorie, totalCalorie) {
+    constructor(item, calorie, totalCalorie,index) {
         this.item = item;
         this.calorie = calorie;
         this.totalCalorie = 0;
+        this.index=index;
         this.itemAdded = new Observer();
         this.itemEditable = new Observer();
         this.itemUpdated = new Observer();
@@ -17,5 +18,6 @@ class Meals {
         this.totalCalorie += this.calorie;
         this.itemAdded.notify(this.item, this.calorie, this.totalCalorie);
     }
+    update
 }
 export default new Meals();
