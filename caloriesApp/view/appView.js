@@ -41,9 +41,21 @@ export default class View {
 
         editbtn.addEventListener('click',(e)=>{
              event.currentTarget.disabled=true;
-            this.elements.itemName= event.currentTarget.parentNode.parentNode.firstChild.value;
-            this.elements.calorieValue= event.currentTarget.parentNode.parentNode.secondChild.value;
-        })
+             this.elements.addButton.style.display="none";
+             this.elements.updateButton.style.display="block";
+             this.elements.deleteButton.style.display="block";
+             this.elements.itemName.value=event.currentTarget.parentNode.parentNode.childNodes[0].innerHTML;
+             this.elements.calorieValue.value=event.currentTarget.parentNode.parentNode.childNodes[1].innerHTML;
+      
+       this.elements.updateButton.addEventListener('click',(c)=>{
+           this.elements.updateButton.style.display="none";
+           this.elements.deleteButton.style.display="none";
+           this.elements.addButton.style.display="block";
+           e.target.disabled=false;
+           e.target.parentNode.parentNode.childNodes[0].innerHTML=this.elements.itemName.value;
+           e.target.parentNode.parentNode.childNodes[1].innerHTML=this.elements.calorieValue.value;
+       })      
+            })
 
 
 

@@ -56,7 +56,6 @@
 	    var view = new _appView2.default({
 	        calorieTotal: document.querySelector('#total'),
 	        addButton: document.querySelector('#add-button'),
-	        editButton: document.querySelector('#edit-button'),
 	        updateButton: document.getElementById('update-button'),
 	        deleteButton: document.getElementById('delete-button'),
 	        itemName: document.getElementById('item-name'),
@@ -140,9 +139,23 @@
 	            this.elements.total.innerHTML = calorieTotal;
 
 	            editbtn.addEventListener('click', function (e) {
+	                e.stopPropagation();
 	                event.currentTarget.disabled = true;
-	                _this2.elements.itemName = event.currentTarget.parentNode.parentNode.firstChild.value;
-	                _this2.elements.calorieValue = event.currentTarget.parentNode.parentNode.secondChild.value;
+	                _this2.elements.addButton.style.display = "none";
+	                _this2.elements.updateButton.style.display = "block";
+	                _this2.elements.deleteButton.style.display = "block";
+	                _this2.elements.itemName.value = event.currentTarget.parentNode.parentNode.childNodes[0].innerHTML;
+	                _this2.elements.calorieValue.value = event.currentTarget.parentNode.parentNode.childNodes[1].innerHTML;
+
+	                _this2.elements.updateButton.addEventListener('click', function (c) {
+	                    e.stopPropagation();
+	                    _this2.elements.updateButton.style.display = "none";
+	                    _this2.elements.deleteButton.style.display = "none";
+	                    _this2.elements.addButton.style.display = "block";
+	                    e.target.disabled = false;
+	                    e.target.parentNode.parentNode.childNodes[0].innerHTML = _this2.elements.itemName.value;
+	                    e.target.parentNode.parentNode.childNodes[1].innerHTML = _this2.elements.calorieValue.value;
+	                });
 	            });
 	        }
 	    }]);
