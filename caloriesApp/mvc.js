@@ -10,6 +10,7 @@ import View from "./view/appView";
         itemName: document.getElementById('item-name'),
         calorieValue: document.getElementById('calorie-value'),
         menuTable: document.getElementById('menu-table'),
+        tableHead: document.getElementById('table-head'),
         total: document.getElementById('total-calories')
     });
     view.initialize();

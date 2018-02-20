@@ -14,10 +14,10 @@ export default class View {
         })
         this.elements.addButton.addEventListener('click', (e) => {
             if (this.elements.itemName.value != "" && this.elements.calorieValue != "") {
-                this.controller.add(this.elements.itemName.value, this.elements.calorieValue, this.elements.calorieTotal);
-                this.calorieTotal += parseInt(this.calorieValue);
+                this.controller.add(this.elements.itemName.value, this.elements.calorieValue.value);
+
                 this.elements.itemName.value = "";
-                this.elements.calorieValue = "";
+                this.elements.calorieValue.value = "";
             }
         });
     }

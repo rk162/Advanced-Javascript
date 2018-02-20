@@ -62,6 +62,7 @@
 	        itemName: document.getElementById('item-name'),
 	        calorieValue: document.getElementById('calorie-value'),
 	        menuTable: document.getElementById('menu-table'),
+	        tableHead: document.getElementById('table-head'),
 	        total: document.getElementById('total-calories')
 	    });
 	    view.initialize();
@@ -110,10 +111,10 @@
 	            });
 	            this.elements.addButton.addEventListener('click', function (e) {
 	                if (_this.elements.itemName.value != "" && _this.elements.calorieValue != "") {
-	                    _this.controller.add(_this.elements.itemName.value, _this.elements.calorieValue, _this.elements.calorieTotal);
-	                    _this.calorieTotal += parseInt(_this.calorieValue);
+	                    _this.controller.add(_this.elements.itemName.value, _this.elements.calorieValue.value);
+
 	                    _this.elements.itemName.value = "";
-	                    _this.elements.calorieValue = "";
+	                    _this.elements.calorieValue.value = "";
 	                }
 	            });
 	        }
@@ -168,8 +169,8 @@
 	        _classCallCheck(this, Meals);
 
 	        this.item = item;
-	        this.calorie = parseInt(calorie);
-	        // this.totalCalorie = 0;
+	        this.calorie = calorie;
+	        this.totalCalorie = 0;
 	        this.itemAdded = new _listenernotify2.default();
 	        this.itemEditable = new _listenernotify2.default();
 	        this.itemUpdated = new _listenernotify2.default();
@@ -180,7 +181,9 @@
 	    _createClass(Meals, [{
 	        key: "add",
 	        value: function add(item, calorie, totalCalorie) {
-	            // this.totalCalorie += parseInt(this.calorie);
+	            this.item = item;
+	            this.calorie = parseInt(calorie);
+	            this.totalCalorie += this.calorie;
 	            this.itemAdded.notify(this.item, this.calorie, this.totalCalorie);
 	        }
 	    }]);
@@ -260,8 +263,8 @@
 
 	    _createClass(Controller, [{
 	        key: "add",
-	        value: function add(item, calorie, totalCalorie) {
-	            this.model.add(item, calorie, totalCalorie);
+	        value: function add(item, calorie) {
+	            this.model.add(item, calorie);
 	        }
 	    }]);
 

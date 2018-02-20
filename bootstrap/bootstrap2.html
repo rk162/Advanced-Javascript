@@ -10,8 +10,27 @@
 <!-- Optional theme -->
 <link rel="stylesheet"
  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<style>
+    body{
+        position: relative;
+        margin: 0 auto;
+        padding: 0 auto;
+        min-height: 100%;
+    }
+    .col-md-2{
+        float: right;
+    }
+footer{   
+        text-align: center;
+    }
+</style>
 </head>
   <body>
+      <div id="page">
+      <header class="container-fluid">
+     <h1>
+         The Heading
+     </h1>
         <nav class="navbar navbar-default">
                 <div class="container-fluid">
                   <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,7 +83,11 @@
                     </ul>
                   </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
-              </nav>
+              </nav> </header>
+              <aside class="col-md-2">
+                  <h1>Aside</h1>
+          <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem eius nam accusamus? Nobis quidem repellat itaque cum aliquid ad voluptatem eveniet ab obcaecati esse ea perferendis, atque tenetur consequatur. Vero. </p>  
+         </aside>
    <div class="row">
      <div class="col-md-4">
             <h1>4 Column </h1>
@@ -72,19 +95,17 @@
               Lorem, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam, asperiores nemo! Provident aperiam, tenetur molestias sequi asperiores qui commodi accusamus delectus quae voluptatem porro, a adipisci eaque pariatur quisquam inventore. ipsum dolor sit amet consectetur adipisicing elit. Nobis omnis facere fugiat veniam ipsa voluptatibus ad est expedita, maxime tempora illo, voluptatem sunt maiores repudiandae quas esse reiciendis possimus molestiae!
             </p>
      </div>
-     <div class="col-md-4">
+     <div class="col-md-5">
        <h1>4 Column</h1>
        <p>
         Lorem ipsum dolor Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore veritatis labore nisi animi consectetur sapiente beatae quaerat, accusamus voluptas voluptatum quae sed, in incidunt illum quas quia laborum ipsam fuga. sit amet consectetur adipisicing elit. Voluptatum beatae nihil consectetur soluta velit itaque officiis blanditiis impedit cum perspiciatis, ut exercitationem laudantium distinctio ratione optio autem inventore dicta provident.
        </p>
-     </div>
-     <div class="col-md-4">
-        <h1>4 Column</h1>
-        <p>
-         Lorem ipsum dolor Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore veritatis labore nisi animi consectetur sapiente beatae quaerat, accusamus voluptas voluptatum quae sed, in incidunt illum quas quia laborum ipsam fuga. sit amet consectetur adipisicing elit. Voluptatum beatae nihil consectetur soluta velit itaque officiis blanditiis impedit cum perspiciatis, ut exercitationem laudantium distinctio ratione optio autem inventore dicta provident.
-        </p>
-      </div>
+    </div>
    </div>
+   <footer class="navbar navbar-default navbar-fixed-bottom">
+         &copy; Copyright 2017-2018  Sapient.com
+   </footer>
+</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </body>

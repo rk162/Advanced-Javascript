@@ -4,7 +4,7 @@ export default class Controller {
     constructor(model) {
         this.model = Meals;
     }
-    add(item, calorie, totalCalorie) {
-        this.model.add(item, calorie, totalCalorie);
+    add(item, calorie) {
+        this.model.add(item, calorie);
     }
 }
