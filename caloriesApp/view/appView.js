@@ -20,6 +20,10 @@ export default class View {
                 this.elements.calorieValue.value = "";
             }
         });
+
+        this.model.itemUpdated.attach((itemName,calorieValue,calorieTotal)=>{
+            this.render(itemName,calorieValue,calorieTotal);
+        })
     }
 
     render(itemName, calorieValue, calorieTotal) {
@@ -46,7 +50,7 @@ export default class View {
              this.elements.deleteButton.style.display="block";
              this.elements.itemName.value=event.currentTarget.parentNode.parentNode.childNodes[0].innerHTML;
              this.elements.calorieValue.value=event.currentTarget.parentNode.parentNode.childNodes[1].innerHTML;
-      
+            });
        this.elements.updateButton.addEventListener('click',(c)=>{
            this.elements.updateButton.style.display="none";
            this.elements.deleteButton.style.display="none";
@@ -55,7 +59,7 @@ export default class View {
            e.target.parentNode.parentNode.childNodes[0].innerHTML=this.elements.itemName.value;
            e.target.parentNode.parentNode.childNodes[1].innerHTML=this.elements.calorieValue.value;
        })      
-            })
+            
 
 
 
