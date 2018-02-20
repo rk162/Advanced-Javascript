@@ -9,7 +9,8 @@ import View from "./view/appView";
         deleteButton: document.getElementById('delete-button'),
         itemName: document.getElementById('item-name'),
         calorieValue: document.getElementById('calorie-value'),
-        menuTable: document.getElementById('menu-table')
+        menuTable: document.getElementById('menu-table'),
+        total: document.getElementById('total-calories')
     });
     view.initialize();
 })();

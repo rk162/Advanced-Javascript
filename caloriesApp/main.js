@@ -61,7 +61,8 @@
 	        deleteButton: document.getElementById('delete-button'),
 	        itemName: document.getElementById('item-name'),
 	        calorieValue: document.getElementById('calorie-value'),
-	        menuTable: document.getElementById('menu-table')
+	        menuTable: document.getElementById('menu-table'),
+	        total: document.getElementById('total-calories')
 	    });
 	    view.initialize();
 	})();
@@ -108,9 +109,10 @@
 	                _this.render(itemName, calorieValue, calorieTotal);
 	            });
 	            this.elements.addButton.addEventListener('click', function (e) {
-	                if (_this.elements.itemName.value != "" && _this.elements.calorieValue.value != "") {
-	                    _this.controller.add(_this.itemName, _this.elements.calorieValue.value, _this.elements.calorieTotal);
-	                    _this.elements.itemName = "";
+	                if (_this.elements.itemName.value != "" && _this.elements.calorieValue != "") {
+	                    _this.controller.add(_this.elements.itemName.value, _this.elements.calorieValue, _this.elements.calorieTotal);
+	                    _this.calorieTotal += parseInt(_this.calorieValue);
+	                    _this.elements.itemName.value = "";
 	                    _this.elements.calorieValue = "";
 	                }
 	            });
@@ -132,7 +134,7 @@
 	            action.appendChild(edit);
 	            tItem.innerHTML = itemName;
 	            tCalorie.innerHTML = calorieValue;
-	            this.elements.subHead.innerHTML = "Total Calories : " + calorieTotal.value;
+	            this.elements.total.innerHTML = calorieTotal;
 	        }
 	    }]);
 
@@ -162,13 +164,12 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var Meals = function () {
-	    function Meals(itemName, calorieValue, calorieTotal) {
+	    function Meals(item, calorie, totalCalorie) {
 	        _classCallCheck(this, Meals);
 
-	        this.itemName = itemName;
-	        this.calorieValue = calorieValue;
-	        this.calorieTotal = 0;
-	        this.total = new _listenernotify2.default();
+	        this.item = item;
+	        this.calorie = parseInt(calorie);
+	        // this.totalCalorie = 0;
 	        this.itemAdded = new _listenernotify2.default();
 	        this.itemEditable = new _listenernotify2.default();
 	        this.itemUpdated = new _listenernotify2.default();
@@ -178,9 +179,9 @@
 
 	    _createClass(Meals, [{
 	        key: "add",
-	        value: function add(itemName, calorieValue, calorieTotal) {
-	            this.calorieTotal += parseInt(this.calorieValue);
-	            this.total.notify(itemName, calorieValue, calorieTotal);
+	        value: function add(item, calorie, totalCalorie) {
+	            // this.totalCalorie += parseInt(this.calorie);
+	            this.itemAdded.notify(this.item, this.calorie, this.totalCalorie);
 	        }
 	    }]);
 
@@ -251,7 +252,7 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var Controller = function () {
-	    function Controller() {
+	    function Controller(model) {
 	        _classCallCheck(this, Controller);
 
 	        this.model = _meals2.default;
@@ -259,8 +260,8 @@
 
 	    _createClass(Controller, [{
 	        key: "add",
-	        value: function add(itemName, calorieValue, calorieTotal) {
-	            this.model.add(itemName, calorieValue, calorieTotal);
+	        value: function add(item, calorie, totalCalorie) {
+	            this.model.add(item, calorie, totalCalorie);
 	        }
 	    }]);
 

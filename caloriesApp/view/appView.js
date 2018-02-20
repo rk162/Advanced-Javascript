@@ -13,9 +13,10 @@ export default class View {
             this.render(itemName, calorieValue, calorieTotal);
         })
         this.elements.addButton.addEventListener('click', (e) => {
-            if (this.elements.itemName.value != "" && this.elements.calorieValue.value != "") {
-                this.controller.add(this.itemName, this.elements.calorieValue.value, this.elements.calorieTotal);
-                this.elements.itemName = "";
+            if (this.elements.itemName.value != "" && this.elements.calorieValue != "") {
+                this.controller.add(this.elements.itemName.value, this.elements.calorieValue, this.elements.calorieTotal);
+                this.calorieTotal += parseInt(this.calorieValue);
+                this.elements.itemName.value = "";
                 this.elements.calorieValue = "";
             }
         });
@@ -36,7 +37,7 @@ export default class View {
         action.appendChild(edit);
         tItem.innerHTML = itemName;
         tCalorie.innerHTML = calorieValue;
-        this.elements.subHead.innerHTML = "Total Calories : " + calorieTotal.value;
+        this.elements.total.innerHTML = calorieTotal;
 
 
 
