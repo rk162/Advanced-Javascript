@@ -1,10 +1,10 @@
-import Datastorage from '../storage/mealstorage'
+import DataStorage from '../storage/mealstorage'
 import Meal from '../model/meal'
 
 class MealController{
     constructor(){
 
-this.items=DataStorage.getMeals();
+this.items= DataStorage.getMeals();
 this.currentMeal=null;
 this.totalCalories=0;
 
@@ -16,8 +16,13 @@ this.totalCalories=0;
         } else{
             ID=0;
         }
-        newMeal=new Model(ID,name,calorie);
+        let newMeal=new Meal(ID,name,calorie);
            this.items.push(newMeal);
+           DataStorage.storeMeal(newMeal);
            return newMeal;
     }
+    deleteMeal(name,calorie){
+        
+    }
 }
+export default new MealController();
