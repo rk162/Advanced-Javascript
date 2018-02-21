@@ -235,7 +235,7 @@
 	        value: function _delete(item, calorie, totalCalorie) {
 
 	            this.totalCalorie = parseInt(this.totalCalorie) - parseInt(this.calorie);
-	            this.itemDeleted.notify(this.item, this.calorie, this.totalCalorie);
+	            //this.itemDeleted.notify(this.item, this.calorie, this.totalCalorie);
 	        }
 	    }]);
 

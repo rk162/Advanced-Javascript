@@ -22,7 +22,7 @@ class Meals {
         this.newTotal = this.totalCalorie;
         this.newCalorie = parseInt(newCalorie);
         this.newTotal = parseInt(this.totalCalorie) - parseInt(this.calorie) + this.newCalorie;
-        this.itemUpdated.notify(this.newItem, this.newCalorie, this.newTotal);
+       this.itemUpdated.notify(this.newItem, this.newCalorie, this.newTotal);
     }
     delete(item, calorie, totalCalorie) {
 
