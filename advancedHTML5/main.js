@@ -54,6 +54,8 @@
 
 	console.log(_MealCtrl2.default.addMeal('Kadai Paneer', 1000));
 	console.log(_MealCtrl2.default.addMeal('Palak Paneer', 2000));
+	console.log(_MealCtrl2.default.updateMeal(1, 'Shahi Paneer', 1000));
+	console.log(_MealCtrl2.default.removeMeal(0));
 
 /***/ }),
 /* 1 */
@@ -102,6 +104,40 @@
 	            _mealstorage2.default.storeMeal(newMeal);
 	            return newMeal;
 	        }
+	    }, {
+	        key: 'getMealById',
+	        value: function getMealById(id) {
+	            var found = null;
+	            this.items.forEach(function (item) {
+	                if (item.id === id) {
+	                    found = item;
+	                }
+	            });
+	            return found;
+	        }
+	    }, {
+	        key: 'updateMeal',
+	        value: function updateMeal(id, name, calorie) {
+
+	            this.items.forEach(function (item) {
+	                if (item.id === id) {
+	                    item.meal = name;
+	                    item.calorie = calorie;
+	                    _mealstorage2.default.updateMeal(item);
+	                }
+	            });
+
+	            //return newMeal;
+	        }
+	    }, {
+	        key: 'removeMeal',
+	        value: function removeMeal(id) {
+	            this.items.forEach(function (item) {
+	                if (item.id === id) {
+	                    _mealstorage2.default.removeMeal(item);
+	                }
+	            });
+	        }
 	    }]);
 
 	    return MealController;
@@ -141,6 +177,33 @@
 	                items.push(meal);
 	                localStorage.setItem('meals', JSON.stringify(items));
 	            }
+	        }
+	    }, {
+	        key: 'updateMeal',
+	        value: function updateMeal(meal) {
+	            var meals = JSON.parse(localStorage.getItem('meals'));
+	            meals.forEach(function (existingmeal) {
+	                if (existingmeal.id === meal.id) {
+	                    Object.assign(existingmeal, meal);
+	                    localStorage.setItem('meals', JSON.stringify(meals));
+	                }
+	            });
+	        }
+	    }, {
+	        key: 'removeMeal',
+	        value: function removeMeal(meal) {
+	            var meals = JSON.parse(localStorage.getItem('meals'));
+	            var ids = meals.map(function (item) {
+	                return item.id;
+	            });
+	            meals.forEach(function (existingmeal) {
+
+	                if (existingmeal.id === meal.id) {
+
+	                    meals.splice(ids.indexOf(meal.id), 1);
+	                }
+	                localStorage.setItem('meals', JSON.stringify(meals));
+	            });
 	        }
 	    }, {
 	        key: 'getMeals',
