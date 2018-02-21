@@ -116,6 +116,10 @@
 	                    _this.elements.calorieValue.value = "";
 	                }
 	            });
+
+	            this.model.itemUpdated.attach(function (itemName, calorieValue, calorieTotal) {
+	                _this.render(itemName, calorieValue, calorieTotal);
+	            });
 	        }
 	    }, {
 	        key: "render",
@@ -139,22 +143,32 @@
 	            this.elements.total.innerHTML = calorieTotal;
 
 	            editbtn.addEventListener('click', function (e) {
-	                e.stopPropagation();
 	                event.currentTarget.disabled = true;
 	                _this2.elements.addButton.style.display = "none";
 	                _this2.elements.updateButton.style.display = "block";
 	                _this2.elements.deleteButton.style.display = "block";
+	                var index = e.target.parentNode.parentNode.rowIndex;
 	                _this2.elements.itemName.value = event.currentTarget.parentNode.parentNode.childNodes[0].innerHTML;
 	                _this2.elements.calorieValue.value = event.currentTarget.parentNode.parentNode.childNodes[1].innerHTML;
 
+	                _this2.elements.deleteButton.addEventListener('click', function (d) {
+	                    _this2.elements.menuTable.deleteRow(index);
+	                    _this2.elements.updateButton.style.display = "none";
+	                    _this2.elements.deleteButton.style.display = "none";
+	                    _this2.elements.addButton.style.display = "block";
+	                    _this2.elements.itemName.value = "";
+	                    _this2.elements.calorieValue.value = "";
+	                    _this2.controller.delete(_this2.elements.itemName.value, _this2.elements.calorieValue.value);
+	                });
+
 	                _this2.elements.updateButton.addEventListener('click', function (c) {
-	                    e.stopPropagation();
 	                    _this2.elements.updateButton.style.display = "none";
 	                    _this2.elements.deleteButton.style.display = "none";
 	                    _this2.elements.addButton.style.display = "block";
 	                    e.target.disabled = false;
 	                    e.target.parentNode.parentNode.childNodes[0].innerHTML = _this2.elements.itemName.value;
 	                    e.target.parentNode.parentNode.childNodes[1].innerHTML = _this2.elements.calorieValue.value;
+	                    _this2.controller.update(_this2.elements.itemName.value, _this2.elements.calorieValue.value);
 	                });
 	            });
 	        }
@@ -206,6 +220,23 @@
 	            this.calorie = parseInt(calorie);
 	            this.totalCalorie += this.calorie;
 	            this.itemAdded.notify(this.item, this.calorie, this.totalCalorie);
+	        }
+	    }, {
+	        key: "update",
+	        value: function update(newItem, newCalorie, newTotal) {
+	            this.newItem = newItem;
+	            this.newTotal = this.totalCalorie;
+	            this.newCalorie = parseInt(newCalorie);
+	            this.newTotal = parseInt(this.totalCalorie) - parseInt(this.calorie) + this.newCalorie;
+	            this.itemUpdated.notify(this.newItem, this.newCalorie, this.newTotal);
+	        }
+	    }, {
+	        key: "delete",
+	        value: function _delete(item, calorie, totalCalorie) {
+	            this.index = index - 1;
+
+	            this.totalCalorie = parseInt(this.totalCalorie) - parseInt(this.calorie);
+	            this.itemDeleted.notify(this.item, this.calorie, this.totalCalorie);
 	        }
 	    }]);
 
@@ -286,6 +317,16 @@
 	        key: "add",
 	        value: function add(item, calorie) {
 	            this.model.add(item, calorie);
+	        }
+	    }, {
+	        key: "update",
+	        value: function update(item, calorie) {
+	            this.model.update(item, calorie);
+	        }
+	    }, {
+	        key: "delete",
+	        value: function _delete(item, calorie) {
+	            this.model.delete(item, calorie);
 	        }
 	    }]);
 

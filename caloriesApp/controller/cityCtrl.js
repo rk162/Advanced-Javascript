@@ -7,4 +7,10 @@ export default class Controller {
     add(item, calorie) {
         this.model.add(item, calorie);
     }
+    update(item, calorie) {
+        this.model.update(item, calorie);
+    }
+    delete(item, calorie) {
+        this.model.delete(item, calorie);
+    }
 }
