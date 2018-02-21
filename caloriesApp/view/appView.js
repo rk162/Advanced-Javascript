@@ -20,7 +20,7 @@ export default class View {
                 this.elements.calorieValue.value = "";
             }
         });
-
+    
         this.model.itemUpdated.attach((itemName, calorieValue, calorieTotal) => {
             this.render(itemName, calorieValue, calorieTotal);
         });

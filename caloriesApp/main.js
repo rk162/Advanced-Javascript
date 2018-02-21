@@ -233,7 +233,6 @@
 	    }, {
 	        key: "delete",
 	        value: function _delete(item, calorie, totalCalorie) {
-	            this.index = index - 1;
 
 	            this.totalCalorie = parseInt(this.totalCalorie) - parseInt(this.calorie);
 	            this.itemDeleted.notify(this.item, this.calorie, this.totalCalorie);
@@ -320,13 +319,13 @@
 	        }
 	    }, {
 	        key: "update",
-	        value: function update(item, calorie) {
-	            this.model.update(item, calorie);
+	        value: function update(item, calorie, total) {
+	            this.model.update(item, calorie, total);
 	        }
 	    }, {
 	        key: "delete",
-	        value: function _delete(item, calorie) {
-	            this.model.delete(item, calorie);
+	        value: function _delete(item, calorie, total) {
+	            this.model.delete(item, calorie, total);
 	        }
 	    }]);
 
