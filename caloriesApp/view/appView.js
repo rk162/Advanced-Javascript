@@ -1,11 +1,11 @@
-import Meals from "../model/meals";
-import Controller from "../controller/cityCtrl";
+import Model from '../model/meal'
+import MealController from '../controller/MealCtrl'
 
 export default class View {
     constructor(elements) {
         this.elements = elements;
         this.model = Meals;
-        this.controller = new Controller();
+        this.mealController = MealController;
     }
 
     initialize() {
@@ -20,7 +20,7 @@ export default class View {
                 this.elements.calorieValue.value = "";
             }
         });
-    
+
         this.model.itemUpdated.attach((itemName, calorieValue, calorieTotal) => {
             this.render(itemName, calorieValue, calorieTotal);
         });
