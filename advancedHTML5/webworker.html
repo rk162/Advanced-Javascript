@@ -40,9 +40,20 @@
                       alert(e.message);
                   }
                   worker.postMessage('start')
+                  document.querySelector('#start').disabled=true;
+                  document.querySelector('#pause').disabled=false;
 
           })
-      })();
+          document.querySelector('#pause').addEventListener('click',(e)=>{
+                  worker.postMessage('pause')
+                  document.querySelector('#pause').disabled=true;
+                  document.querySelector('#start').disabled=false;
+                })
+                  document.querySelector('#stop').addEventListener('click',(e)=>{
+                  worker.terminate();
+                  
+      })
+    })();
     </script>
 </body>
 </html>
