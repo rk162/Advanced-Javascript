@@ -23,7 +23,7 @@ class Metacharacters{
 // let re=/[A-Z]pien?t/         //between range of A to Z
 // let re=/Sap[A-Za-z]{2,4}t/i    // in the range of 2 to 8 from A to Z or a-z
 // let re= /^[A-Za-z]{3,6}t/i         // 3 to 6 characters before t should come
-let re1=/Helo/i;
+let re1=/Hello/i;
 let rel2=/^([0-9]x){3,4}$/          // no from 0-9 followed by x should repeat 3 or 4 times
   // Assertions                                   // if no $ will take any range greedy
 let re3=/x(?=y)/                     // match x only if it is followed by y
