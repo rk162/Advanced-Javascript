@@ -6,10 +6,10 @@ export default class Observer {
     attach(cb) {
         this.observers.push(cb);
     }
-    notify(itemName, calorieValue, calorieTotal) {
+    notify(itemName, calorieValue) {
 
         this.observers.forEach((cb) => {
-            cb(itemName, calorieValue, calorieTotal);
+            cb(itemName, calorieValue);
         });
     }
 }
