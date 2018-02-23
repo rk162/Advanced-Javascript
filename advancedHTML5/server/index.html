@@ -35,7 +35,7 @@
         message.user = user;
         message.text = document.getElementById("message").value;
         socket.send(JSON.stringify(message));
-        document.getElementById("message").value = "";
+        document.getElementById("message").value = ""; 
       }
       window.onload = function () {
         document.getElementById("chat").setAttribute("style", "display:none");

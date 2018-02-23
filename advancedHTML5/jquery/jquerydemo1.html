@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi vero ullam omnis nemo repellat odio, doloremque dolor maiores ab, minima, qui nulla eius ut impedit incidunt dignissimos accusamus voluptatibus cupiditate.</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam eaque quia inventore repudiandae dolorem, nemo, corporis error possimus recusandae minus sed praesentium animi nesciunt similique repellat in quisquam pariatur! Modi.</p>
+  <a href=""></a>Hello <span>Where</span> are u<span></span>    
+    <a href=""> going?</a>
+    <table>
+        <tr>
+            <th>Sl. No</th>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Jignesh</td>
+            <td>3e</td>
+            <td class="urClass">0.2</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Alpesh</td>
+            <td>4w</td>
+            <td>0.3</td>
+        </tr>
+        <tr id="myID">
+            <td class="myClass">3</td>
+            <td>Hardik</td>
+            <td>5t</td>
+            <td>0.4</td>
+        </tr>  
+    </table>
+    <form>
+        <label for="Item">Item</label>
+    <input type="radio">
+    <label for="Message">Write Message Here</label> 
+    <input type="text"> 
+    <label for="TextArea">Comments</label>
+    <textarea name="Text" id="" cols="30" rows="10"></textarea>
+</form>
+
+<!-- <div>
+    <div><span>fd</span>
+    <span>tr</span>
+    <span>we</span>dsf</div>
+    <div>ghg<span>sdff</span>grg<span>fgf</span></div>
+</div>        -->
+<div>ad</div>
+<div>bd</div>
+<div>cd</div>
+<br>
+<div class="box" > 
+</div>
+
+<div class="officePhone">Office Phone</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+//  jQuery(document).ready(function(){
+//      console.log('Document Content Loaded')
+//  })
+// $(document).ready(function(){
+//      console.log('Document Content Loaded')
+//  })
+ $(function(){
+    console.log('Document Content Loaded')
+ })
+ console.log($('p, a, span'))
+ console.log($('table tr'))
+// console.log(document.querySelector('#myID'))
+console.log($('.myClass,.urClass'))
+console.log($(':input'))
+console.log($(':input[type="radio"]'))
+console.log($('tr:odd'))
+console.log($('tr:even'))
+console.log($('span:first-child'))
+$('div').each(function(i){
+    this.title="My Index="+i;
+});
+$('div:odd').attr('title','My Div Title');
+var title= $('div').attr('title');
+console.log(title)
+$('.box').attr({
+    title:'My Box Title',
+    style: 'border:2px solid black;height:100px;width:100px;background-color:blue;'  
+})
+
+// $('<span>(office)</span>').appendTo('.officePhone');
+// OR  
+// $('.officePhone').append('<span>(office)</span>');
+// $('.officePhone').prepend('<span>(office)</span>');
+$('<span>(office)</span>').prependTo('.officePhone');
+</script>
+</body>
+</html>
