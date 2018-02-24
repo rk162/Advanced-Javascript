@@ -25,7 +25,7 @@ localStorage.setItem('meals',JSON.stringify(items))
             }
         })
     }
-
+                                                                            
     removeMeal(meal){
     let meals=JSON.parse(localStorage.getItem('meals'));
     const ids=  meals.map((item)=>{
