@@ -1,6 +1,6 @@
 const add=(a,b)=>{
-    setTimeout(()=>{
 
+setTimeout(()=>{
 for(let i=0;i<99999999;i++){}
 // return a+b;
 console.log(a+b)
