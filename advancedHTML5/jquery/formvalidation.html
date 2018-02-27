@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+
+  
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 30px;
+        }
+        .error {
+            color: red;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <form class="form-horizontal">
+
+        <div class="form-group">
+            <label for="email" class="col-sm-2 control-label" >Email</label>
+            <div class="col-sm-4">
+                <input type="text" id="email" name="email" class="form-control"  />
+            </div>
+
+        </div>
+        
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-4">
+                <input type="password" id="password" name="password" class="form-control"   />
+            </div>
+        </div>
+
+      <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <!--<input type="submit" class="btn btn-primary" value="Submit" />-->
+                <button type="reset" class="btn btn-primary">Reset</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </div>
+        </div>
+
+
+    </form>
+<script>
+    $('form').validate({
+        rules:{
+            email:{
+                required: true,
+                minlength:10,
+            },   
+        password:{
+            required: true
+        }
+        },
+        messages:{
+            email:{ required: 'Required Input',
+             minlength:$.validator.format('Atleast {0} characters are required')
+             }          
+        },
+        submitHandler(form){
+            alert(form)
+        },
+        invalidHandler(event,validator){
+            alert(event)
+        },
+        highlight(element,errorClass){
+            $(element).closest('.form-group')
+            .addClass('has-error')
+        },
+       unhighlight(element,errorClass){
+            $(element).closest('.form-group')
+            .removeClass('has-error')
+        }
+    })
+</script>
+   
+</body>
+</html>
