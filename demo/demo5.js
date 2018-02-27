@@ -23,9 +23,7 @@ readCounter(c){
 
     var t=setTimeout(()=>{ 
         this.emit('start');
-        if(err){
-            return this.emit('error',err);
-        }
+
         for(count;count<=c;count++){
         this.emit('data',count)
         
@@ -37,7 +35,7 @@ readCounter(c){
 }
 
 let eventEmitter= new Counter();
-eventEmitter.readCounter(20)
+eventEmitter.readCounter(200)
 eventEmitter.on('start',()=>console.log('started'))
 eventEmitter.on('data',(contents)=>console.log('Receiving Data '+contents))
 eventEmitter.on('error',(err)=>console.error(err))
