@@ -80,23 +80,22 @@
 	        value: function connect() {
 	            var _this = this;
 
-	            document.querySelector('form').addEventListener('submit', function () {
-	                var name = document.querySelector('#name').value;
-	                var message = document.querySelector('#message').value;
+	            $('form').addEventListener('submit', function () {
+	                var name = $('#name').value;
+	                var message = $('#message').value;
 	                _this.ws.send(JSON.stringify({ name: name, message: message }));
 	                return false;
 	            });
 	            this.ws.onmessage = function (e) {
-	                var li = document.createElement('li');
-	                li.appendChild(document.createTextNode(e.data));
-	                document.querySelector('#messages').appendChild(li);
+	                var li = $('<li></li>');
+	                li.append(document.createTextNode(e.data));
+	                $('#messages').append(li);
 	            };
 	            this.ws.oneror = function (e) {
-	                var li = document.createElement('li');
-	                var span = document.createElement('span');
-	                span.appendChild('Error' + e.data);
-	                li.appendChild(span);
-	                document.querySelector('#messages').appendChild(li);
+	                var li = $('<li></li>');
+	                var span = $('<span></span>')(span).append('Error' + e.data);
+	                li.append(span);
+	                $('#messages').append(li);
 	            };
 	        }
 	    }]);

@@ -1,15 +1,15 @@
 export default class Observer {
-    constructor(observers) {
+    constructor() {
         this.observers = [];
     }
 
     attach(cb) {
         this.observers.push(cb);
     }
-    notify(itemName, calorieValue) {
+    notify(meals) {
 
         this.observers.forEach((cb) => {
-            cb(itemName, calorieValue);
+            cb(meals);
         });
     }
 }

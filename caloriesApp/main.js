@@ -83,9 +83,17 @@
 
 	var _meal2 = _interopRequireDefault(_meal);
 
-	var _MealCtrl = __webpack_require__(4);
+	var _MealCtrl = __webpack_require__(5);
 
 	var _MealCtrl2 = _interopRequireDefault(_MealCtrl);
+
+	var _mealstorage = __webpack_require__(4);
+
+	var _mealstorage2 = _interopRequireDefault(_mealstorage);
+
+	var _listenernotify = __webpack_require__(3);
+
+	var _listenernotify2 = _interopRequireDefault(_listenernotify);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -98,6 +106,7 @@
 	        this.elements = elements;
 	        this.model = _meal2.default;
 	        this.controller = _MealCtrl2.default;
+	        this.items = _mealstorage2.default.getMeals();
 	    }
 
 	    _createClass(View, [{
@@ -105,13 +114,13 @@
 	        value: function initialize() {
 	            var _this = this;
 
-	            this.controller.addMeal(function (itemName, calorieValue) {
-	                _this.render(itemName, calorieValue);
+	            _mealstorage2.default.getMeals(function (id, itemName, calorieValue) {
+	                _this.render(meals);
 	            });
 	            this.elements.addButton.addEventListener('click', function (e) {
 	                if (_this.elements.itemName.value != "" && _this.elements.calorieValue != "") {
-	                    _this.controller.addMeal(_this.elements.itemName.value, _this.elements.calorieValue.value);
-
+	                    _this.controller.addMeal(_this.elements.itemName, _this.elements.calorieValue);
+	                    // this.model.itemAdded.notify(newMeal);
 	                    _this.elements.itemName.value = "";
 	                    _this.elements.calorieValue.value = "";
 	                }
@@ -123,7 +132,7 @@
 	        }
 	    }, {
 	        key: "render",
-	        value: function render(itemName, calorieValue) {
+	        value: function render(meals) {
 	            var subHead = document.getElementById("subheading");
 	            var tdata = document.createElement("tr");
 	            var tItem = document.createElement("td");
@@ -190,22 +199,46 @@
 	    value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _listenernotify = __webpack_require__(3);
 
 	var _listenernotify2 = _interopRequireDefault(_listenernotify);
+
+	var _mealstorage = __webpack_require__(4);
+
+	var _mealstorage2 = _interopRequireDefault(_mealstorage);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var Model = function Model(id, meal, calorie) {
-	    _classCallCheck(this, Model);
+	var Model = function () {
+	    function Model(id, meal, calorie) {
+	        _classCallCheck(this, Model);
 
-	    this.id = id;
-	    this.meal = meal;
-	    this.calorie = calorie;
-	    this.itemAdded = new _listenernotify2.default();
-	};
+	        this.id = id;
+	        this.meal = meal;
+	        this.calorie = calorie;
+	        this.itemAdded = new _listenernotify2.default();
+	    }
+
+	    _createClass(Model, [{
+	        key: "addMeal",
+	        value: function addMeal(meal, calorie) {
+	            // this.cities.push(name);
+	            // debugger;
+	            this.itemAdded.notify(newMeal);
+	        }
+	        // remove(index) {
+	        //     this.cities.splice(index, 1);
+	        //     this.cityRemoved.notify(this.cities);
+	        // }
+
+	    }]);
+
+	    return Model;
+	}();
 
 	exports.default = Model;
 
@@ -237,10 +270,10 @@
 	        }
 	    }, {
 	        key: "notify",
-	        value: function notify(itemName, calorieValue) {
+	        value: function notify(newMeal) {
 
 	            this.observers.forEach(function (cb) {
-	                cb(itemName, calorieValue);
+	                cb(newMeal);
 	            });
 	        }
 	    }]);
@@ -252,94 +285,6 @@
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _mealstorage = __webpack_require__(5);
-
-	var _mealstorage2 = _interopRequireDefault(_mealstorage);
-
-	var _meal = __webpack_require__(2);
-
-	var _meal2 = _interopRequireDefault(_meal);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var MealController = function () {
-	    function MealController() {
-	        _classCallCheck(this, MealController);
-
-	        this.items = _mealstorage2.default.getMeals();
-	        this.currentMeal = null;
-	        this.totalCalories = 0;
-	    }
-
-	    _createClass(MealController, [{
-	        key: 'addMeal',
-	        value: function addMeal(name, calorie) {
-	            var ID = void 0;
-	            if (this.items.length > 0) {
-	                ID = this.items[this.items.length - 1].id + 1;
-	            } else {
-	                ID = 0;
-	            }
-	            var newMeal = new _meal2.default(ID, name, calorie);
-	            this.items.push(newMeal);
-	            _mealstorage2.default.storeMeal(newMeal);
-	            return newMeal;
-	        }
-	    }, {
-	        key: 'getMealById',
-	        value: function getMealById(id) {
-	            var found = null;
-	            this.items.forEach(function (item) {
-	                if (item.id === id) {
-	                    found = item;
-	                }
-	            });
-	            return found;
-	        }
-	    }, {
-	        key: 'updateMeal',
-	        value: function updateMeal(id, name, calorie) {
-
-	            this.items.forEach(function (item) {
-	                if (item.id === id) {
-	                    item.meal = name;
-	                    item.calorie = calorie;
-	                    _mealstorage2.default.updateMeal(item);
-	                }
-	            });
-
-	            //return newMeal;
-	        }
-	    }, {
-	        key: 'removeMeal',
-	        value: function removeMeal(id) {
-	            this.items.forEach(function (item) {
-	                if (item.id === id) {
-	                    _mealstorage2.default.removeMeal(item);
-	                }
-	            });
-	        }
-	    }]);
-
-	    return MealController;
-	}();
-
-	exports.default = new MealController();
-
-/***/ }),
-/* 5 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -415,6 +360,94 @@
 	}();
 
 	exports.default = new DataStorage();
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _mealstorage = __webpack_require__(4);
+
+	var _mealstorage2 = _interopRequireDefault(_mealstorage);
+
+	var _meal = __webpack_require__(2);
+
+	var _meal2 = _interopRequireDefault(_meal);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var MealController = function () {
+	    function MealController() {
+	        _classCallCheck(this, MealController);
+
+	        this.items = _mealstorage2.default.getMeals();
+	        this.currentMeal = null;
+	        this.totalCalories = 0;
+	    }
+
+	    _createClass(MealController, [{
+	        key: 'addMeal',
+	        value: function addMeal(name, calorie) {
+	            var ID = void 0;
+	            if (this.items.length > 0) {
+	                ID = this.items[this.items.length - 1].id + 1;
+	            } else {
+	                ID = 0;
+	            }
+	            var newMeal = new _meal2.default(ID, name, calorie);
+	            this.items.push(newMeal);
+	            _mealstorage2.default.storeMeal(newMeal);
+	            return newMeal;
+	        }
+	    }, {
+	        key: 'getMealById',
+	        value: function getMealById(id) {
+	            var found = null;
+	            this.items.forEach(function (item) {
+	                if (item.id === id) {
+	                    found = item;
+	                }
+	            });
+	            return found;
+	        }
+	    }, {
+	        key: 'updateMeal',
+	        value: function updateMeal(id, name, calorie) {
+
+	            this.items.forEach(function (item) {
+	                if (item.id === id) {
+	                    item.meal = name;
+	                    item.calorie = calorie;
+	                    _mealstorage2.default.updateMeal(item);
+	                }
+	            });
+
+	            //return newMeal;
+	        }
+	    }, {
+	        key: 'removeMeal',
+	        value: function removeMeal(id) {
+	            this.items.forEach(function (item) {
+	                if (item.id === id) {
+	                    _mealstorage2.default.removeMeal(item);
+	                }
+	            });
+	        }
+	    }]);
+
+	    return MealController;
+	}();
+
+	exports.default = new MealController();
 
 /***/ })
 /******/ ]);

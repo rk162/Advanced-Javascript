@@ -1,57 +1,58 @@
-class DataStorage{
+class DataStorage {
 
-    storeMeal(meal){
+    constructor() {
+        this.itemChanged = new Observer();
+    }
+    storeMeal(meal) {
         let items;
-        if(localStorage.getItem('meals')===null){
-            items=[];
+        if (localStorage.getItem('meals') === null) {
+            items = [];
             items.push(meal);
-localStorage.setItem('meals',JSON.stringify(items))
+            localStorage.setItem('meals', JSON.stringify(items))
+        } else {
+            items = JSON.parse(localStorage.getItem('meals'))
+            items.push(meal);
+            localStorage.setItem('meals', JSON.stringify(items))
         }
-        else{
-    items=JSON.parse(localStorage.getItem('meals'))
-items.push(meal);
-localStorage.setItem('meals',JSON.stringify(items))
-}
-
+        this.itemChanged.notify(items);
     }
 
-    updateMeal(meal){
-        let meals=JSON.parse(localStorage.getItem('meals'));
-        meals.forEach((existingmeal)=>{
-            if(existingmeal.id===meal.id){
-    Object.assign(existingmeal,meal)
-        localStorage.setItem('meals', JSON.stringify(meals))
+    updateMeal(meal) {
+        let meals = JSON.parse(localStorage.getItem('meals'));
+        meals.forEach((existingmeal) => {
+            if (existingmeal.id === meal.id) {
+                Object.assign(existingmeal, meal)
+                localStorage.setItem('meals', JSON.stringify(meals))
 
             }
+        });
+        this.itemChanged.notify(items);
+    }
+
+    removeMeal(meal) {
+        let meals = JSON.parse(localStorage.getItem('meals'));
+        const ids = meals.map((item) => {
+            return item.id;
         })
-    }
-                                                                            
-    removeMeal(meal){
-    let meals=JSON.parse(localStorage.getItem('meals'));
-    const ids=  meals.map((item)=>{
-        return item.id;
-        })    
-    meals.forEach((existingmeal)=>{
-          
-           
+        meals.forEach((existingmeal) => {
 
-            if(existingmeal.id===meal.id){
+            if (existingmeal.id === meal.id) {
 
-            meals.splice(ids.indexOf(meal.id),1)
+                meals.splice(ids.indexOf(meal.id), 1)
             }
-    localStorage.setItem('meals', JSON.stringify(meals))
-            })
-        }
+            localStorage.setItem('meals', JSON.stringify(meals))
+        })
+        this.itemChanged.notify(items);
+    }
 
 
-    
-    getMeals(){
+
+    getMeals() {
         let items;
-        if(localStorage.getItem('meals')===null){
-        items=[];
-        }
-        else{
-        items=JSON.parse(localStorage.getItem('meals'))
+        if (localStorage.getItem('meals') === null) {
+            items = [];
+        } else {
+            items = JSON.parse(localStorage.getItem('meals'))
         }
         return items;
     }
@@ -59,4 +60,4 @@ localStorage.setItem('meals',JSON.stringify(items))
 
 }
 
-export default new DataStorage()
+export default new DataStorage();
