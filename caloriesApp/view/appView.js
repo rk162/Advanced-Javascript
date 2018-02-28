@@ -26,11 +26,11 @@ export default class View {
 
         this.elements.updateButton.addEventListener('click', () => {
             if (this.elements.itemName.value != "" && this.elements.calorieValue != "") {
-                this.controller.updateMeal(this.targetId, this.elements.meal.value, this.elements.amount.value);
+                this.controller.updateMeal(this.targetId, this.elements.itemName.value, this.elements.calorieValue.value);
             }
         })
         this.elements.deleteButton.addEventListener('click', () => {
-            if (this.elements.itemName.value != "" && this.elements.calorieValue != "") {
+            if (this.elements.itemName.value != "" && this.elements.calorieValue.value != "") {
                 this.controller.removeMeal(this.targetId);
             }
         })
@@ -44,13 +44,13 @@ export default class View {
 
     render(newMeals) {
         this.total = 0;
-        this.elements.mainTable.innerHTML = "";
+        this.elements.menuTable.innerHTML = "";
         if (newMeals.length == 0) {
             this.elements.itemName.value = "";
             this.elements.calorieValue = "";
-            this.elements.mainTable.innerHTML = "";
+            this.elements.menuTable.innerHTML = "";
             this.total = 0;
-            this.elements.totalCalories.innerHTML = this.total;
+            this.elements.calorieTotal.innerHTML = this.total;
 
         }
 
@@ -72,49 +72,40 @@ export default class View {
             this.total = this.total + parseInt(item.calorieValue);
             this.elements.calorieTotal.innerHTML = this.total;
 
-            editButton.addEventListener(
-                "click",
-                event => {
-                    document
-                        .querySelectorAll(".editButton")
-                        .forEach(entry => {
+           editbtn.addEventListener( "click", event => {
+                     document .querySelectorAll(".editButton") .forEach(entry => {
                             entry.disabled = true;
                         });
-                    this.targetId =
-                        event.currentTarget.id;
-                    this.elements.addButton.style =
-                        "display:none";
-                    this.elements.updateButton.style =
-                        "display:inline";
-                    this.elements.deleteButton.style =
-                        "display:inline";
+                    this.targetId = event.currentTarget.id;
+                    this.elements.addButton.style = "display:none";
+                    this.elements.updateButton.style = "display:inline";
+                    this.elements.deleteButton.style = "display:inline";
                     this.elements.calorieValue = "";
                 }
             );
             document
-                .querySelectorAll(".editButton")
-                .forEach(entry => {
+                .querySelectorAll(".editButton") .forEach(entry => { 
                     entry.disabled = false;
                 });
-            this.elements.deleteButton.addEventListener('click', (d) => {
-                this.elements.menuTable.deleteRow(index);
-                this.elements.updateButton.style.display = "none";
-                this.elements.deleteButton.style.display = "none";
-                this.elements.addButton.style.display = "block";
-                this.elements.itemName.value = "";
-                this.elements.calorieValue.value = "";
-                this.controller.delete(this.elements.itemName.value, this.elements.calorieValue.value);
-            });
+            // this.elements.deleteButton.addEventListener('click', (d) => {
+            //     this.elements.menuTable.deleteRow(index);
+            //     this.elements.updateButton.style.display = "none";
+            //     this.elements.deleteButton.style.display = "none";
+            //     this.elements.addButton.style.display = "block";
+            //     this.elements.itemName.value = "";
+            //     this.elements.calorieValue.value = "";
+            //     this.controller.delete(this.elements.itemName.value, this.elements.calorieValue.value);
+            // });
 
-            this.elements.updateButton.addEventListener('click', (c) => {
-                this.elements.updateButton.style.display = "none";
-                this.elements.deleteButton.style.display = "none";
-                this.elements.addButton.style.display = "block";
-                e.target.disabled = false;
-                e.target.parentNode.parentNode.childNodes[0].innerHTML = this.elements.itemName.value;
-                e.target.parentNode.parentNode.childNodes[1].innerHTML = this.elements.calorieValue.value;
-                this.controller.update(this.elements.itemName.value, this.elements.calorieValue.value);
-            });
+            // this.elements.updateButton.addEventListener('click', (c) => {
+            //     this.elements.updateButton.style.display = "none";
+            //     this.elements.deleteButton.style.display = "none";
+            //     this.elements.addButton.style.display = "block";
+            //     e.target.disabled = false;
+            //     e.target.parentNode.parentNode.childNodes[0].innerHTML = this.elements.itemName.value;
+            //     e.target.parentNode.parentNode.childNodes[1].innerHTML = this.elements.calorieValue.value;
+            //     this.controller.update(this.elements.itemName.value, this.elements.calorieValue.value);
+            // });
 
         });
 

@@ -3,6 +3,6 @@ export default class Model {
         this.id = id;
         this.meal = meal;
         this.calorie = calorie;
-        this.itemAdded = new Observer();
+       
     }
 }

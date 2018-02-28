@@ -1,7 +1,9 @@
+import Observer from '../observer/listenernotify';
 class DataStorage {
 
     constructor() {
         this.itemChanged = new Observer();
+       
     }
     storeMeal(meal) {
         let items;
@@ -26,13 +28,13 @@ class DataStorage {
 
             }
         });
-        this.itemChanged.notify(items);
+        this.itemChanged.notify(meals);
     }
 
     removeMeal(meal) {
         let meals = JSON.parse(localStorage.getItem('meals'));
-        const ids = meals.map((item) => {
-            return item.id;
+        const ids = meals.map((items) => {
+            return items.id;
         })
         meals.forEach((existingmeal) => {
 
@@ -42,7 +44,7 @@ class DataStorage {
             }
             localStorage.setItem('meals', JSON.stringify(meals))
         })
-        this.itemChanged.notify(items);
+        this.itemChanged.notify(meals);
     }
 
 

@@ -2,7 +2,7 @@ import View from "./view/appView";
 
 (function() {
     let view = new View({
-        calorieTotal: document.querySelector('#total'),
+        calorieTotal: document.querySelector('#total-calories'),
         addButton: document.querySelector('#add-button'),
         updateButton: document.getElementById('update-button'),
         deleteButton: document.getElementById('delete-button'),
@@ -10,7 +10,7 @@ import View from "./view/appView";
         calorieValue: document.getElementById('calorie-value'),
         menuTable: document.getElementById('menu-table'),
         tableHead: document.getElementById('table-head'),
-        total: document.getElementById('total-calories')
+        clearButton: document.getElementById('clear-all')
     });
     view.initialize();
 })();
