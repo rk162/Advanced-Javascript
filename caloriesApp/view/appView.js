@@ -1,114 +1,87 @@
-import MealController from "../controller/MealCtrl";
+import MealController from "../controller/MealCtrl"
 
-export default class View {
-    constructor(elements) {
+export default class View{
+    constructor(elements){
         this.elements = elements;
-        this.controller = MealController;
         this.total = 0;
         this.targetId;
     }
+    initialize(){
+        MealController.DataStorage.itemChanged.attach((meals)=>{this.render(meals)})
 
-    initialize() {
-        MealController.DataStorage.itemChanged.attach((meals) => {
-            this.render(meals)
-        })
-        window.onload = () => {
+        window.onload = ()=>{
             this.render(MealController.items);
-        };
-        this.elements.addButton.addEventListener('click', (e) => {
-            if (this.elements.itemName.value != "" && this.elements.calorieValue != "") {
-                this.controller.addMeal(this.elements.itemName.value, this.elements.calorieValue.value);
-                // this.model.itemAdded.notify(newMeal);
-                this.elements.itemName.value = "";
-                this.elements.calorieValue.value = "";
-            }
-        });
+        }
 
-        this.elements.updateButton.addEventListener('click', () => {
-            if (this.elements.itemName.value != "" && this.elements.calorieValue != "") {
-                this.controller.updateMeal(this.targetId, this.elements.itemName.value, this.elements.calorieValue.value);
+        this.elements.addButton.addEventListener('click',()=>{
+            if(this.elements.meal.value !="" && this.elements.amount.value !=""){
+                MealController.addMeal(this.elements.meal.value,this.elements.amount.value);
             }
         })
-        this.elements.deleteButton.addEventListener('click', () => {
-            if (this.elements.itemName.value != "" && this.elements.calorieValue.value != "") {
-                this.controller.removeMeal(this.targetId);
+        this.elements.updateButton.addEventListener('click',()=>{
+            if(this.elements.meal.value !="" && this.elements.amount.value !=""){
+                MealController.updateMeal(this.targetId,this.elements.meal.value,this.elements.amount.value);
             }
         })
-        this.elements.clearButton.addEventListener('click', () => {
+        this.elements.deleteButton.addEventListener('click',()=>{
+            if(this.elements.meal.value !="" && this.elements.amount.value !=""){
+                MealController.removeMeal(this.targetId);
+            }
+        })
+        this.elements.clearButton.addEventListener('click',()=>{
             this.elements.addButton.style = "display:inline";
             this.elements.updateButton.style = "display:none";
             this.elements.deleteButton.style = "display:none";
-            this.controller.clearMeals();
+            MealController.clearMeals();
         })
+
+        
     }
 
-    render(newMeals) {
+    render(newMeals){
         this.total = 0;
         this.elements.menuTable.innerHTML = "";
-        if (newMeals.length == 0) {
-            this.elements.itemName.value = "";
-            this.elements.calorieValue = "";
+        if(newMeals.length == 0){
+            this.elements.meal.value = "";
+            this.elements.amount.value = "";
             this.elements.menuTable.innerHTML = "";
             this.total = 0;
-            this.elements.calorieTotal.innerHTML = this.total;
-
+            this.elements.totalCalories.innerHTML = this.total;
         }
-
         newMeals.forEach((item) => {
-            let subHead = document.getElementById("subheading");
-            let tdata = document.createElement("tr");
-            let tItem = document.createElement("td");
-            let tCalorie = document.createElement("td");
-            let action = document.createElement("td");
-            let editbtn = document.createElement("button");
-            editbtn.innerHTML = "Edit";
-            this.elements.menuTable.appendChild(tdata);
-            tdata.appendChild(tItem);
-            tdata.appendChild(tCalorie);
-            tdata.appendChild(action);
-            action.appendChild(editbtn);
-            tItem.innerHTML = item.itemName;
-            tCalorie.innerHTML = item.calorieValue;
-            this.total = this.total + parseInt(item.calorieValue);
-            this.elements.calorieTotal.innerHTML = this.total;
-
-           editbtn.addEventListener( "click", event => {
-                     document .querySelectorAll(".editButton") .forEach(entry => {
-                            entry.disabled = true;
-                        });
-                    this.targetId = event.currentTarget.id;
-                    this.elements.addButton.style = "display:none";
-                    this.elements.updateButton.style = "display:inline";
-                    this.elements.deleteButton.style = "display:inline";
-                    this.elements.calorieValue = "";
-                }
-            );
-            document
-                .querySelectorAll(".editButton") .forEach(entry => { 
-                    entry.disabled = false;
-                });
-            // this.elements.deleteButton.addEventListener('click', (d) => {
-            //     this.elements.menuTable.deleteRow(index);
-            //     this.elements.updateButton.style.display = "none";
-            //     this.elements.deleteButton.style.display = "none";
-            //     this.elements.addButton.style.display = "block";
-            //     this.elements.itemName.value = "";
-            //     this.elements.calorieValue.value = "";
-            //     this.controller.delete(this.elements.itemName.value, this.elements.calorieValue.value);
-            // });
-
-            // this.elements.updateButton.addEventListener('click', (c) => {
-            //     this.elements.updateButton.style.display = "none";
-            //     this.elements.deleteButton.style.display = "none";
-            //     this.elements.addButton.style.display = "block";
-            //     e.target.disabled = false;
-            //     e.target.parentNode.parentNode.childNodes[0].innerHTML = this.elements.itemName.value;
-            //     e.target.parentNode.parentNode.childNodes[1].innerHTML = this.elements.calorieValue.value;
-            //     this.controller.update(this.elements.itemName.value, this.elements.calorieValue.value);
-            // });
-
-        });
-
-
+            let tdata1= document.createElement('td');
+            let tdata2= document.createElement('td');
+            let tdata3= document.createElement('td');
+            tdata3.setAttribute('style','float:right')
+            let trow = document.createElement('tr');
+            tdata1.innerHTML = item.meal;
+            tdata2.innerHTML = item.calorie + " Calories";
+            let editButton = document.createElement('button');
+            editButton.classList += "editButton";
+            editButton.setAttribute('id',item.id);
+            editButton.innerHTML = "Edit";
+            tdata3.appendChild(editButton);
+            trow.appendChild(tdata1);
+            trow.appendChild(tdata2);
+            trow.appendChild(tdata3);
+            this.elements.menuTable.appendChild(trow);
+            this.total = this.total + parseInt(item.calorie);
+            this.elements.totalCalories.innerHTML = this.total;
+            this.elements.meal.value = "";
+            this.elements.amount.value = "";
+            this.elements.addButton.style = "display:inline";
+            this.elements.updateButton.style = "display:none";
+            this.elements.deleteButton.style = "display:none";
+            editButton.addEventListener('click',(event)=>{
+                document.querySelectorAll('.editButton').forEach((entry)=>{entry.disabled=true});
+                this.targetId = event.currentTarget.id;
+                this.elements.addButton.style = "display:none";
+                this.elements.updateButton.style = "display:inline";
+                this.elements.deleteButton.style = "display:inline";
+                this.elements.meal.value = item.meal;
+                this.elements.amount.value = item.calorie;
+            })
+            document.querySelectorAll('.editButton').forEach((entry)=>{entry.disabled=false});
+    });   
     }
 }
