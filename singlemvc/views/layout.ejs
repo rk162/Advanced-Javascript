@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="nodeJS Template">
+    <meta name="author" content="Luciano Resende">
+    
+    <!-- styles -->
+    <link href="/lib/boostrap/css/bootstrap.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container"> 
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span
+                            class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                <a href="#" class="navbar-brand">Application</a></div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/users">Users</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Insert Body here -->
+<div class="container">
+
+    <div class="starter-template">
+        <%- body %>
+    </div>
+
+</div><!-- /.container -->
+
+<div class="footer">
+    <div class="container">
+        <p class="text-center text-muted">© Copyright Luciano Resende - 2014</p>
+    </div>
+</div>
+
+</body>
+</html>
